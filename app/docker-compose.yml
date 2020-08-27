@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+        frontend:
+                build:
+                        context: ./frontend
+                working_dir: /code
+                volumes:
+                        - ./frontend/frontend:/code/
+                ports:
+                        - "3000:3000"
+                stdin_open: true # docker run -i
+                tty: true # docker run -t
