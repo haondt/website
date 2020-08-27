@@ -1,13 +1,243 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+/* css for new landing page */
+h1, h2, a, p {
+  font-family: Roboto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+	background-color: #212121;
+	margin: 0;
+	padding: 0;
+	color: white;
+}
+/* set up navigation bar */
+
+div#navBar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #212121; 
+}
+
+div#navBar a {
+	display: block;
+	color:white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+ }
+
+div#navBar li {
+	float: left;
+}
+
+div#navBar a:hover {
+	background-color: #6f40b7;
+}
+
+div#navBar .active {
+	background-color: #6f40b7;
+}
+
+/* bio formatting */
+div#intro {
+	color: white;
+}
+div#intro td{
+	margin: 0;
+	padding: 50px;
+}
+
+/* contacts formatting */
+div#contacts table {
+	width: auto;
+	margin: auto;
+}
+div#contacts td {
+	margin: 0;
+	padding: 10px;
+}
+div#contacts a {
+	display:block;	
+	padding: 16px 16px;
+  background-size: 32px auto;
+
+  /* hide anchor text */
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+#insta {
+	background-image: url("./images/icons/instagram.png");
+}
+#insta:hover {
+	background-image: url("./images/icons/instagram_hover.png");
+}
+#github {
+	background-image: url("./images/icons/github.png");
+}
+#github:hover {
+	background-image: url("./images/icons/github_hover.png");
+}
+#mail {
+	background-image: url("./images/icons/email.png");
+}
+#mail:hover {
+	background-image: url("./images/icons/email_hover.png");
+}
+#linkedin {
+	background-image: url("./images/icons/linkedin.png");
+}
+#linkedin:hover {
+	background-image: url("./images/icons/linkedin_hover.png");
+}
+
+/* format footer */
+div#footer {
+	bottom: 0;
+	position: fixed;
+}
+
+div#footer a {
+	display: block;
+	color: #6f40b7;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+div#footer a:hover {
+	color: white;
+}
+
+/* pad imprint page */
+#imprint div#attributions {
+	padding: 20px;
+}
+
+/* resume page */
+
+div.resumeContent {
+	margin: auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	background: rgb(40,40,40);
+	width: 900px;
+}
+
+.resumeContent p, .resumeContent a  {
+	text-decoration: none;
+	font-size: 18px;
+}
+
+
+.resumeContent a  {
+	color: rgb(111,64,183);
+}
+
+.resumeContent img {
+	height: 20px;
+	background-color: #6f40b7;
+	padding: 5px;
+	
+}
+.resumeContent h3 {
+}
+.resumeContent td {
+	padding: 0px;
+	margin: 0px;
+	padding-left: 20px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.resumeContent tr {
+	border-bottom: 15px solid #212121;
+	border-collapse: collapse;
+}
+.resumeContent table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+/* projects page */
+img.projPic {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgb(111, 64, 183);
+}
+
+img.language {
+	height: 25px;
+	padding: 5px;
+	background-color: #6f40b7;
+}
+.projectContent p, .projectContent h1 {
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	margin: 10px;
+}
+
+.projectContent div.buttons {
+	width: 100%;
+}
+
+.projectContent .buttons table{
+	margin: 0 auto;
+}
+
+.projectContent .buttons td {
+	padding: 0 2px;
+}
+
+.projectContent p {
+	text-align: left;
+}
+.projectContent a {
+	text-align:center;
+	text-decoration:none;
+	display: block;
+	margin-bottom:4px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top:6px;
+	padding-bottom:7px;
+	color:white;
+	background-color: #6f40b7;
+}
+
+.projectContent h1 {
+	padding-top: 3%;
+	padding-bottom: 10px;
+}
+
+div.projectContent {
+	margin: auto;
+	margin-top:40px;
+	background: rgb(40,40,40);
+	width: 900px;
+}
+/* constants */
+.smallContent {
+	width: 850px;
+	margin: auto;
+}
+.centerContent {
+	min-width: 810px;
+	max-width: 1250px;
+	margin: auto;
+}
+div.Title {
+	margin: auto;
+	padding: 1px;
+	width: 900px;
+	
+	text-align: center;
+	font-size: 20px;
+	background: rgb(40,40,40);
 }
