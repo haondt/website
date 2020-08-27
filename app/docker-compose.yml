@@ -7,6 +7,8 @@ services:
                 working_dir: /code
                 volumes:
                         - ./frontend/frontend:/code/
+                          # data volume to persist node modules from build stage
+                        - /code/node_modules 
                 ports:
                         - "3000:3000"
                 stdin_open: true # docker run -i
