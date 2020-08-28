@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import HomePage from './Homepage'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import AboutMe from './AboutMe'
+import Projects from './Projects'
 
 const SwichFactory = (props) => {
     const routes = props.pages.map((route, index) => {
@@ -36,7 +37,7 @@ class App extends Component {
         {
             url: "/pages/projects",
             text: "Projects",
-            page: <AboutMe />
+            page: <Projects />
         },
     ]
     return (
