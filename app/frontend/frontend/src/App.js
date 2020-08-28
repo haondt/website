@@ -4,6 +4,7 @@ import HomePage from './Homepage'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import AboutMe from './AboutMe'
 import Projects from './Projects'
+import AsciiArt from './AsciiArt'
 
 const SwichFactory = (props) => {
     const routes = props.pages.map((route, index) => {
@@ -38,6 +39,12 @@ class App extends Component {
             url: "/pages/projects",
             text: "Projects",
             page: <Projects />
+        },
+        {
+            url: "/demos/ascii-art",
+            text: "Ascii-Art",
+            page: <AsciiArt />,
+            demo: true
         },
     ]
     return (
