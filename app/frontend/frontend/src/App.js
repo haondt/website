@@ -1,29 +1,52 @@
 import React, {Component} from 'react'
 import Navbar from './Navbar'
 import HomePage from './Homepage'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import AboutMe from './AboutMe'
 
+const SwichFactory = (props) => {
+    const routes = props.pages.map((route, index) => {
+        return (
+            <Route key={index} exact path={route.url}>
+                {route.page}
+            </Route>
+        )
+    })
+
+    return (
+        <Switch>
+            {routes}
+        </Switch>
+    )
+}
 
 class App extends Component {
   render() {
     const pages = [
         {
-            url: "#",
+            url: "/",
             text: "Noah Burghardt",
+            page: <HomePage />
         },
         {
-            url: "#",
-            text: "About Me",
+            url: "/pages/aboutme",
+            text: "Resume",
+            page: <AboutMe />
         },
         {
-            url: "#",
+            url: "/pages/projects",
             text: "Projects",
+            page: <AboutMe />
         },
     ]
     return (
-        <div>
+        <Router>
+            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
             <Navbar pages={pages}/>
-            <HomePage />
-        </div>
+
+            <SwichFactory pages={pages} />
+
+        </Router>
     )
   }
 }

@@ -11,6 +11,7 @@ COPY ./frontend/package-lock.json .
 RUN apk add --no-cache git
 RUN npm install --silent
 RUN npm install react-scripts -g --silent
+RUN npm install --save react-router-dom --silent
 
 # copy rest of frontend source files
 COPY ./frontend .

@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App'
 import './index.css';
-
+import App from './App'
 
 ReactDOM.render(
-  <div>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
-    <App />
-  </div>,
+  <App />,
   document.getElementById('root'));

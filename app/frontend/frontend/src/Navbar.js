@@ -1,11 +1,11 @@
 import React from 'react'
+import  {Link} from 'react-router-dom'
 
 
 const Navbar = (props) => {
     const buttons = props.pages.map((page, index) => 
-        <li key={index}><a href={page.url} target="_self">{page.text}</a></li>
+        <li key={index}><Link to={page.url} target="_self">{page.text}</Link></li>
     )
-
     return (
         <div id="navBar">
             <ul>
