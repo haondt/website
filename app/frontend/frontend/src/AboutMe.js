@@ -61,7 +61,7 @@ const AboutMe = () => {
         {
             img: "./images/skills.svg",
             alt: "Skills",
-            text: "Python, Flask, Django, C, C#, Git, SQL, MongoDB, Agile"
+            text: "Python, Java, React, Flask, Django, C, C#, Git, SQL, MongoDB, Linux, Docker, Agile"
         },
         {
             img: "./images/hobbies.svg",

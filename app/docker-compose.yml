@@ -13,3 +13,16 @@ services:
                         - "3000:3000"
                 stdin_open: true # docker run -i
                 tty: true # docker run -t
+        backend:
+                build:
+                        context: ./backend
+                working_dir: /code
+                command: python3 app.py
+                volumes:
+                        - ./backend/flask:/code
+                        - /projects
+                ports:
+                        - "8000:8000"
+
+
+
