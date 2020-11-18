@@ -225,6 +225,7 @@ div.projectContent {
 	width: 900px;
 }
 /* constants */
+
 .smallContent {
 	width: 850px;
 	margin: auto;
@@ -242,4 +243,11 @@ div.Title {
 	text-align: center;
 	font-size: 20px;
 	background: rgb(40,40,40);
+}
+
+/* Demos */
+div.demo {
+  margin: auto;
+  width: 900px;
+  background: rgb(40,40,40);
 }
