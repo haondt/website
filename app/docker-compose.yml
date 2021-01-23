@@ -23,6 +23,21 @@ services:
                         - /projects
                 ports:
                         - "8000:8000"
+                networks:
+                        - backend_network
+                depends_on:
+                        - db
+        db:
+                image: mysql:5.7
+                environment:
+                        MYSQL_DATABASE: 'my-app-db'
+                        MYSQL_ROOT_PASSWORD: 'password'
+                networks:
+                        - backend_network
+
+networks:
+        backend_network:
+                driver: bridge
 
 
 
