@@ -9,8 +9,6 @@ services:
                         - ./frontend/frontend:/code/
                           # data volume to persist node modules from build stage
                         - /code/node_modules 
-                ports:
-                        - "3000:3000"
                 stdin_open: true # docker run -i
                 tty: true # docker run -t
                 networks:
@@ -23,11 +21,8 @@ services:
                 volumes:
                         - ./backend/flask:/code
                         - /projects
-                ports:
-                        - "8000:8000"
                 networks:
                         - backend_network
-                        - frontend_network
                 depends_on:
                         - db
         db:
@@ -37,6 +32,18 @@ services:
                         MYSQL_ROOT_PASSWORD: 'password'
                 networks:
                         - backend_network
+        nginx:
+                image: nginx:alpine
+                ports:
+                        - "80:80"
+                depends_on:
+                        - backend
+                        - frontend
+                volumes:
+                        - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+                networks:
+                        - backend_network
+                        - frontend_network
 
 networks:
         backend_network:

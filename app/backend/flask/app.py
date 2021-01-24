@@ -11,7 +11,7 @@ class AsciiHandler():
 	d = '/projects/ascii-art'
 	def test(self):
 		#return subprocess.call(['python','main.py','-h'], cwd=self.d)
-		return check_output(['ls','-lha', dir_path], cwd=self.d).decode('ascii')
+		#return check_output(['ls','-lha', dir_path], cwd=self.d).decode('ascii')
 		return check_output(['python','main.py','-h'], cwd=self.d).decode('ascii')
 
 class FileManager():
@@ -43,7 +43,6 @@ class AsciiDemo(Resource):
 		return '.' in filename and filename.rsplit('.',1)[1].lower() in self.ALLOWED_EXTENSIONS
 
 	def get(self):
-		return Response(self.fm.foo())
 		return Response(AsciiHandler().test())
 
 	def post(self):
