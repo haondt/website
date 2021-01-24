@@ -3,9 +3,7 @@ import React, {Component} from 'react'
 const AsciiDisplay = (props) => {
     return (
         <div>
-            <p>
-                {props.text}
-            </p>
+            <textarea readOnly defaultValue={props.text}/>
         </div>
     )
 }
@@ -14,18 +12,22 @@ class AsciiArt extends Component {
         width: 150,
         invert: true,
         braille: true,
-        text: ""
+        text: "",
+        disabled: false
     }
 
     fileInput = React.createRef();
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.setState({
+            disabled: true
+        });
 
         const data = new FormData(event.target);
-        data.append('width', this.state.width);
-        data.append('invert', this.state.invert);
-        data.append('braille', this.state.braille);
+        data.set('width', this.state.width);
+        data.set('invert', this.state.invert);
+        data.set('braille', this.state.braille);
         data.append('file', this.fileInput);
 
         fetch('http://docker/api/ascii-demo/', {
@@ -34,7 +36,8 @@ class AsciiArt extends Component {
         }).then((response) => {
             response.text().then((text) => {
                 this.setState({
-                    text: text
+                    text: text,
+                    disabled: false
                 });
             })
         });
@@ -47,7 +50,7 @@ class AsciiArt extends Component {
             value = parseInt(target.value);
         }
         else if (target.type === "checkbox"){
-            value = target.checked
+            value = target.checked;
         }
         const name = target.name;
 
@@ -58,17 +61,19 @@ class AsciiArt extends Component {
 
     render() { return (
         <div className="demo">
+            <fieldset disabled={this.state.disabled}>
             <form ref="form" onSubmit={this.handleSubmit}>
             <label htmlFor="file">Upload an Image: </label>
             <input name="file" id="file" type="file" ref={this.fileInput} accept="image/png, image/jpeg"/><br/><br/>
             <label htmlFor="width">Width (in characters):</label>
-            <input type="number" name="width" step="1" defaultValue={this.state.width} onChange={this.handleInputChange}/><br/><br/>
+            <input type="number" name="width" step="1" defaultValue={String(this.state.width)} onChange={this.handleInputChange}/><br/><br/>
             <input type="checkbox" id="invert" name="invert" checked={this.state.invert} onChange={this.handleInputChange}/>
             <label htmlFor="invert">Invert color</label><br/><br/>
             <input type="checkbox" id="braille" name="braille" checked={this.state.braille} onChange={this.handleInputChange}/>
             <label htmlFor="braille">Use braille characters</label><br/><br/>
             <input type="submit" value="submit"/>
             </form>
+            </fieldset>
             <AsciiDisplay text={this.state.text}/>
         </div>
     )}

@@ -4,74 +4,83 @@ import subprocess
 from subprocess import check_output
 import uuid
 import os
-import datetime
 
 
 class AsciiHandler():
 	d = '/projects/ascii-art'
-	def test(self):
-		#return subprocess.call(['python','main.py','-h'], cwd=self.d)
-		#return check_output(['ls','-lha', dir_path], cwd=self.d).decode('ascii')
-		return check_output(['python','main.py','-h'], cwd=self.d).decode('ascii')
+	def list_files(self):
+		return check_output(['ls','-lha', dir_path], cwd=self.d).decode('utf-8')
+	def generate_output(self, path, width, braille, invert):
+		command = ['python', 'main.py', '-i', path, '-w', str(width)] 
+		# TODO: crash vulnerability
+		if braille:
+			command.append('-b')
+		else:
+			command.append('-A')
+		if invert:
+			command.append('-I')
+		
+		return check_output(command, cwd=self.d).decode('utf-8')
 
-class FileManager():
-	dir_path = None
-	def __init__(self, dir_path):
-		self.dir_path = dir_path
 
-	def add_file(self, f):
-		ext = f.filename.rsplit('.',1)[1].lower()
-		_id = str(uuid.uuid1())
-		path = os.path.join(self.dir_path, _id + '.' + ext)
-		exp = datetime.datetime.now() + datetime.timedelta(minutes=15)
-		f.save(path)
-		return _id
-	
 class AsciiDemo(Resource):
 	ALLOWED_EXTENSIONS = [
 		'png',
 		'jpg'
 		]
-	fm = None
 	ah = None
+	dir_path = None
 
-	def __init__(self, fileManager, asciiHandler):
-		self.fm = fileManager
+	def __init__(self, asciiHandler, dir_path):
 		self.ah = asciiHandler
+		self.dir_path = dir_path
 
 	def allowed_file(self, filename):
 		return '.' in filename and filename.rsplit('.',1)[1].lower() in self.ALLOWED_EXTENSIONS
 
-	def get(self):
-		return Response(AsciiHandler().test())
-
 	def post(self):
 		if 'file' not in request.files:
-			return Response(str(list(request.files)))
-			return Response(str(list(request.values.keys())))
 			return Response("No file part", status=400)
 		f = request.files['file']
 		if f.filename == '':
 			return Response('No selected file', status=400)
 		if f and self.allowed_file(f.filename):
-			_id = self.fm.add_file(f)
-			return Response(_id, status=200)
+			return self.create_art(f)
 		return Response("Unable to download file", status=500)
 
+	def create_art(self, f):
 
-	def delete(self):
-		return "DELETE"
+		# save the file
+		ext = f.filename.rsplit('.',1)[1].lower()
+		_id = str(uuid.uuid1())
+		path = os.path.join(self.dir_path, _id + '.' + ext)
+		f.save(path)
+
+		# create the output
+		output = self.ah.generate_output(
+			path,
+			int(request.form['width']),
+			request.form['braille'].lower() == 'true',
+			request.form['invert'].lower() == 'true',
+		)
+
+		# delete the file
+		os.remove(path)
+
+		# return the art
+		return Response(output, status=200)
+
+
 
 # App setup
 app = Flask(__name__)
 dir_path = os.path.dirname(os.path.realpath(__file__))
 api = Api(app)
-fm = FileManager(dir_path)
 ah = AsciiHandler()
 
 # Route views
 api.add_resource(AsciiDemo, "/api/ascii-demo/", resource_class_kwargs={
-	'fileManager': fm,
+	'dir_path': dir_path,
 	'asciiHandler': ah
 })
 
