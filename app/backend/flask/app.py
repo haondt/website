@@ -47,6 +47,8 @@ class AsciiDemo(Resource):
 
 	def post(self):
 		if 'file' not in request.files:
+			return Response(str(list(request.files)))
+			return Response(str(list(request.values.keys())))
 			return Response("No file part", status=400)
 		f = request.files['file']
 		if f.filename == '':
