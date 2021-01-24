@@ -31,12 +31,12 @@ class App extends Component {
             page: <HomePage />
         },
         {
-            url: "/pages/aboutme",
+            url: "/aboutme",
             text: "Resume",
             page: <AboutMe />
         },
         {
-            url: "/pages/projects",
+            url: "/projects",
             text: "Projects",
             page: <Projects />
         },
