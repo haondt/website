@@ -9,11 +9,12 @@ const AsciiDisplay = (props) => {
 }
 class AsciiArt extends Component {
     state = {
-        width: 150,
+        width: 80,
         invert: true,
         braille: true,
         text: "",
-        disabled: false
+        disabled: false,
+        replace: false
     }
 
     fileInput = React.createRef();
@@ -39,6 +40,11 @@ class AsciiArt extends Component {
                     text: text,
                     disabled: false
                 });
+                if (this.state.replace && this.state.braille){
+                    this.setState({
+                        text: this.state.text.replace(/⠀/g, "⠄")
+                    });
+                }
             })
         });
     }
@@ -61,17 +67,23 @@ class AsciiArt extends Component {
 
     render() { return (
         <div className="demo">
+            <h1>Ascii-art</h1>
+            <p>
+                Upload an image to turn it into art made with text!
+            </p><br/><br/>
             <fieldset disabled={this.state.disabled}>
             <form ref="form" onSubmit={this.handleSubmit}>
             <label htmlFor="file">Upload an Image: </label>
             <input name="file" id="file" type="file" ref={this.fileInput} accept="image/png, image/jpeg"/><br/><br/>
-            <label htmlFor="width">Width (in characters):</label>
-            <input type="number" name="width" step="1" defaultValue={String(this.state.width)} onChange={this.handleInputChange}/><br/><br/>
+            <label htmlFor="width">Width (in characters): </label>
+            <input type="number" id="width" name="width" step="1" defaultValue={String(this.state.width)} onChange={this.handleInputChange}/><br/><br/>
             <input type="checkbox" id="invert" name="invert" checked={this.state.invert} onChange={this.handleInputChange}/>
             <label htmlFor="invert">Invert color</label><br/><br/>
             <input type="checkbox" id="braille" name="braille" checked={this.state.braille} onChange={this.handleInputChange}/>
             <label htmlFor="braille">Use braille characters</label><br/><br/>
-            <input type="submit" value="submit"/>
+            <input type="checkbox" id="replace" disabled={!this.state.braille} name="replace" onChange={this.handleInputChange}/>
+            <label htmlFor="replace">Replace empty braille character with single point character (may help with alignment)</label><br/><br/>
+            <input type="Submit" id="submit"/>
             </form>
             </fieldset>
             <AsciiDisplay text={this.state.text}/>
