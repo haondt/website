@@ -31,7 +31,7 @@ class AsciiArt extends Component {
         data.set('braille', this.state.braille);
         data.append('file', this.fileInput);
 
-        fetch('http://docker/api/ascii-demo/', {
+        fetch('http://localhost/api/ascii-demo/', {
             method: 'POST',
             body: data
         }).then((response) => {

@@ -6,7 +6,7 @@ import AboutMe from './AboutMe'
 import Projects from './Projects'
 import AsciiArt from './AsciiArt'
 
-const SwichFactory = (props) => {
+const SwitchFactory = (props) => {
     const routes = props.pages.map((route, index) => {
         return (
             <Route key={index} exact path={route.url}>
@@ -51,9 +51,7 @@ class App extends Component {
         <Router>
             <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
             <Navbar pages={pages}/>
-
-            <SwichFactory pages={pages} />
-
+            <SwitchFactory pages={pages} />
         </Router>
     )
   }
