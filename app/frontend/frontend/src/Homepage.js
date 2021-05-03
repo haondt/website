@@ -10,8 +10,8 @@ const HomePage = () => {
                         <td><img src={require("./images/avatar_circle.png")} height="200" alt=""/></td>
                         <td>
                             <h1>
-                                I'm Noah Burghardt, a technology enthusiast and aspiring software developer,
-                                currently attending the University of Alberta.
+                                I'm Noah Burghardt, a technology enthusiast and software developer,
+                                recently graduated from the University of Alberta.
                             </h1>
                         </td>
                     </tr>
