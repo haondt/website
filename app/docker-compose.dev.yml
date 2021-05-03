@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+        frontend:
+                build:
+                        context: ./frontend
+                working_dir: /code
+                volumes:
+                        - ./frontend/frontend:/code/
+                          # data volume to persist node modules from build stage
+                        - /code/node_modules 
+                stdin_open: true # docker run -i
+                tty: true # docker run -t
+                networks:
+                        - frontend_network
+        backend:
+                build:
+                        context: ./backend
+                working_dir: /code
+                command: python3 app.py
+                volumes:
+                        - ./backend/flask:/code
+                        - /projects
+                networks:
+                        - backend_network
+                depends_on:
+                        - db
+        db:
+                image: mysql:5.7
+                environment:
+                        MYSQL_DATABASE: 'my-app-db'
+                        MYSQL_ROOT_PASSWORD: 'password'
+                networks:
+                        - backend_network
+        nginx:
+                image: nginx:alpine
+                ports:
+                        - "80:80"
+                depends_on:
+                        - backend
+                        - frontend
+                volumes:
+                        - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+                networks:
+                        - backend_network
+                        - frontend_network
+
+networks:
+        backend_network:
+                driver: bridge
+        frontend_network:
+                driver: bridge
+
+
+
