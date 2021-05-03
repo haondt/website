@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import AboutMe from './AboutMe'
 import Projects from './Projects'
 import AsciiArt from './AsciiArt'
+import Boids from './Boids'
 
 const SwitchFactory = (props) => {
     const routes = props.pages.map((route, index) => {
@@ -44,6 +45,12 @@ class App extends Component {
             url: "/demos/ascii-art",
             text: "Ascii-Art",
             page: <AsciiArt />,
+            demo: true
+        },
+        {
+            url: "/demos/boids",
+            text: "Boids",
+            page: <Boids />,
             demo: true
         },
     ]
