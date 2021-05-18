@@ -1,22 +1,17 @@
 FROM node:alpine
+
 WORKDIR /code/
+RUN apk add --no-cache git
 
 # copy frontend package.json files
-#COPY ./frontend/package.json .
-#COPY ./frontend/package-lock.json .
-#ENV PATH /app/node_modules/.bin:$PATH
-
+COPY ./frontend/package.json .
+COPY ./frontend/package-lock.json .
 # install node modules
-RUN apk add --no-cache git
-RUN npm install --silent
-RUN npm install react-scripts -g --silent
-RUN npm install --save react-router-dom --silent
-RUN npm install --save react-p5
+RUN npm install
 
-# copy rest of frontend source files
-COPY ./frontend .
+# copy rest of frontend source files and set ownership to node user
+COPY --chown=node ./frontend .
 
-#EXPOSE 3000
 
 CMD ["npm", "start"]
 

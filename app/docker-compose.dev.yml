@@ -6,9 +6,7 @@ services:
                         context: ./frontend
                 working_dir: /code
                 volumes:
-                        - ./frontend/frontend:/code/
-                          # data volume to persist node modules from build stage
-                        - /code/node_modules 
+                        - ./frontend/frontend/src:/code/src/
                 stdin_open: true # docker run -i
                 tty: true # docker run -t
                 networks:

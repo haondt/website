@@ -12,7 +12,7 @@ const AnchorCard = (index, props) => {
     return (
         <tr key={index}>
             <td>
-                <img src={require(`${props.img}`)} title={props.alt} alt={props.alt}/>
+                <img src={require(`${props.img}`).default} title={props.alt} alt={props.alt}/>
             </td>
             <td>
                 <h3>
@@ -27,7 +27,7 @@ const TextCard = (index, props) => {
     return (
         <tr key={index}>
             <td>
-                <img src={require(`${props.img}`)} title={props.alt} alt={props.alt}/>
+                <img src={require(`${props.img}`).default} title={props.alt} alt={props.alt}/>
             </td>
             <td>
                 <h3>

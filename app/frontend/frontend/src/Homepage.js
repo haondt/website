@@ -7,7 +7,7 @@ const HomePage = () => {
                 <table>
                     <tbody>
                     <tr>
-                        <td><img src={require("./images/avatar_circle.png")} height="200" alt=""/></td>
+                        <td><img src={require("./images/avatar_circle.png").default} height="200" alt=""/></td>
                         <td>
                             <h1>
                                 I'm Noah Burghardt, a technology enthusiast and software developer,
