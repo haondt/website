@@ -1,6 +1,8 @@
-# website
-An on-going rebuild of my static personal website, using a full-stack implementation of the following technologies:
+# Website
+A full-stack implementation of my personal website, using the following technologies:
 * Docker
 * Flask
 * React.js
 * NGINX
+* LetsEncrypt / Certbot
+* Linode
