@@ -7,7 +7,7 @@ services:
                 working_dir: /code
                 volumes:
                         - ./frontend/frontend/src:/code/src/
-                        - ./frontend/config.dev.json:/code/src/config.json
+                        - ./frontend/config.json:/code/src/config.json
                 stdin_open: true # docker run -i
                 tty: true # docker run -t
                 networks:
@@ -35,14 +35,24 @@ services:
                 image: nginx:alpine
                 ports:
                         - "80:80"
+                        - "443:443"
                 depends_on:
                         - backend
                         - frontend
                 volumes:
-                        - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+                        - ./nginx/prod.conf:/etc/nginx/nginx.conf:ro
+                        - ./certbot/conf:/etc/letsencrypt
+                        - ./certbot/www:/var/www/certbot
                 networks:
                         - backend_network
                         - frontend_network
+                command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+        certbot:
+                image: certbot/certbot
+                volumes:
+                        - ./certbot/conf:/etc/letsencrypt
+                        - ./certbot/www:/var/www/certbot
+                entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
         backend_network:
