@@ -15,7 +15,7 @@ class Navbar extends Component {
 
     render() {
         // Grab the links and active link id from the state
-        const { buttons, activeLink } = this.state;
+        const { activeLink } = this.state;
 
         return (
             <div id="navBar">

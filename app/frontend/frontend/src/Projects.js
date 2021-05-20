@@ -13,7 +13,7 @@ const SkillButtons = (props) => {
     return (props.skills.map((skill, index) => {
         return(
             <td key={index}>
-                <img className="language" src={require(`${skill.img}`)} title={skill.name} alt=""/>
+                <img className="language" src={require(`${skill.img}`).default} title={skill.name} alt=""/>
             </td>
         )
     }))
@@ -55,7 +55,7 @@ const ProjectCard = (props) => {
                 </div>
             </div>
             <div className="smallContent">
-                <img className="projPic" src={require(`${props.img}`)} alt="" />
+                <img className="projPic" src={require(`${props.img}`).default} alt="" />
             </div>
         </div>
 
