@@ -7,7 +7,7 @@ services:
                 working_dir: /code
                 volumes:
                         - ./frontend/frontend/src:/code/src/
-                        - ./frontend/config.json:/code/src/config.json
+                        - ./frontend/config.dev.json:/code/src/config.json
                 stdin_open: true # docker run -i
                 tty: true # docker run -t
                 networks:

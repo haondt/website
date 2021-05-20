@@ -3,3 +3,7 @@
 
 # vscode things
 .vs/
+
+# certificate things
+**/certbot/*
+!**/certbot/.gitkeep
