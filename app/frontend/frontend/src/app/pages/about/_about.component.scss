@@ -11,14 +11,19 @@
     $primary-lighter: map.get($p, lighter);
     $background: mat.get-color-from-palette($b); // default background color
     $background-card: mat.get-color-from-palette($b, card); // background palette with card hue
+    $text: mat.get-color-from-palette($p, default-contrast); // text color
 
-    app-about .mat-chip.mat-standard-chip.proficient {
+    app-about .mat-mdc-chip.proficient {
         border-color: $accent;
     }
 
-    app-about .mat-chip.mat-standard-chip {
+    app-about .mat-mdc-chip {
         background-color: $primary;
         border: 1px solid;
         border-color: $primary-lighter;
+    }
+
+    app-about .mdc-evolution-chip__text-label.mat-mdc-chip-action-label {
+        color: $text;
     }
 }
