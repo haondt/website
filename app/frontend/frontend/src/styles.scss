@@ -1,0 +1,10 @@
+@use "@angular/material" as mat;
+
+/* Material styles */
+@use "./theme/material-themes" as themes;
+
+@include mat.core();
+
+html {
+    background-color: black;
+}

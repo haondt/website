@@ -1,0 +1,24 @@
+@use "@angular/material" as mat;
+@use 'sass:map';
+
+@mixin theme($theme){
+    $a: map.get($theme, accent); // accent palette
+    $p: map.get($theme, primary); // primary palette
+    $b: map.get($theme, background); // background palette
+    $accent: map.get($a, default); // default accent color
+    $primary: mat.get-color-from-palette($p); // default primary color
+    $primary-darker: map.get($p, darker);
+    $primary-lighter: map.get($p, lighter);
+    $background: mat.get-color-from-palette($b); // default background color
+    $background-card: mat.get-color-from-palette($b, card); // background palette with card hue
+
+    app-about .mat-chip.mat-standard-chip.proficient {
+        border-color: $accent;
+    }
+
+    app-about .mat-chip.mat-standard-chip {
+        background-color: $primary;
+        border: 1px solid;
+        border-color: $primary-lighter;
+    }
+}
