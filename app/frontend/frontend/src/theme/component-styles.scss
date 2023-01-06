@@ -8,7 +8,7 @@
 
 @mixin theme($theme){
     /* angular material styles */
-    @include mat.all-component-themes($theme);
+    @include mat.all-legacy-component-themes($theme);
     /* base styles */
     @include styles.theme($theme);
 
