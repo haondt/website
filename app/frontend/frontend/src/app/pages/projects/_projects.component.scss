@@ -24,4 +24,7 @@
     app-projects .mdc-evolution-chip__text-label.mat-mdc-chip-action-label {
         color: $text;
     }
+    .mat-mdc-dialog-surface.mdc-dialog__surface {
+            background: transparent;
+    }
 }

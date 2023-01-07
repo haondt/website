@@ -17,7 +17,7 @@
                     </mat-chip-set>
                     <app-carousel *ngIf="project.images && project.images.length > 0">
                         <app-carriage *ngFor="let i of project.images">
-                            <img [src]="get_asset_path(i)" />
+                            <img class="carriage-image" [src]="get_asset_path(i)" (click)="show_modal_image(i)"/>
                         </app-carriage>
                     </app-carousel>
                 </div>

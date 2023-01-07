@@ -18,9 +18,11 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.track){
-      this.num_children = this.track.nativeElement.children.length;
-    }
+      setTimeout(() =>{
+        if (this.track){
+          this.num_children = this.track.nativeElement.children.length;
+        }
+      })
   }
 
   increase_progress(){

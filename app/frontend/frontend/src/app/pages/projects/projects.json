@@ -11,5 +11,31 @@
         "images": [
             "website/0.png"
         ]
+    },
+    {
+        "title": "Obsidian",
+        "source": "https://github.com/haondt/obsidian",
+        "description": "My home server, which runs services, hosts network storage and provides monitoring tools. Service containers are managed with Proxmox, Docker and LXC. Most configuration is done through docker-compose, the configuration files for which I keep hosted on GitHub.",
+        "tech": [
+            "Linux",
+            "Virtualization",
+            "Networking",
+            "Proxmox",
+            "Docker/Docker Compose",
+            "ZFS",
+            "Grafana",
+            "InfluxDB",
+            "Telegraf",
+            "Prometheus",
+            "Plex",
+            "Samba"
+        ],
+        "images": [
+            "obsidian/1.png",
+            "obsidian/2.png",
+            "obsidian/3.png",
+            "obsidian/4.png",
+            "obsidian/0.png"
+        ]
     }
 ]

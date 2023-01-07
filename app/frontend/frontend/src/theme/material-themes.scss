@@ -8,7 +8,12 @@
 
 /* default theme */
 .default-theme {
-    $theme: mat.define-light-theme(palettes.$primary-default, palettes.$secondary-default);
+    $theme: mat.define-light-theme((
+        color: (
+            primary: palettes.$primary-default,
+            accent: palettes.$secondary-default,
+        )
+    ));
     $theme: map.merge($theme, additional-themes.get-theme(dark-gold));
     @include components.theme($theme);
     @include additional-styles.theme($theme);
@@ -16,7 +21,13 @@
 
 /* dark themes */
 .dark-gold-theme {
-    $theme: mat.define-dark-theme(palettes.$purple-black, palettes.$dark-gold, palettes.$mild-red);
+    $theme: mat.define-dark-theme((
+        color: (
+            primary: palettes.$purple-black,
+            accent: palettes.$dark-gold,
+            warn: palettes.$mild-red
+        )
+    ));
     $theme: map.merge($theme, additional-themes.get-theme(dark-gold));
     @include components.theme($theme);
     @include additional-styles.theme($theme);
