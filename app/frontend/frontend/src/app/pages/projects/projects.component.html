@@ -1,0 +1,27 @@
+<div>
+    <app-wallet>
+        <app-card-title>Notable Projects</app-card-title>
+        <app-card *ngFor="let project of projects">
+            <div class="project-content">
+                <div class="project-title">
+                    <h2>{{ project.title }}</h2>
+                    <span class="spacer"></span>
+                    <button *ngIf="project.source" mat-raised-button color="accent" (click)="open_source(project)">
+                        <span>View source</span>
+                    </button>
+                </div>
+                <div class="card-content">
+                    <h3>{{ project.description }}</h3>
+                    <mat-chip-set>
+                        <mat-chip *ngFor="let t of project.tech">{{ t }}</mat-chip>
+                    </mat-chip-set>
+                    <app-carousel *ngIf="project.images && project.images.length > 0">
+                        <app-carriage *ngFor="let i of project.images">
+                            <img class="carriage-image" [src]="get_asset_path(i)" (click)="show_modal_image(i)"/>
+                        </app-carriage>
+                    </app-carousel>
+                </div>
+            </div>
+        </app-card>
+    </app-wallet>
+</div>
