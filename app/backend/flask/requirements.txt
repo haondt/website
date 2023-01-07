@@ -1,6 +1,0 @@
-flask
-flask_restful
-Pillow
-scikit-image
-numpy
-flask-mysql

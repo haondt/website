@@ -1,16 +1,6 @@
 version: '3'
 
 services:
-        backend:
-                build:
-                        context: ./backend
-                working_dir: /code
-                command: python3 app.py
-                volumes:
-                        - ./backend/flask:/code
-                        - /projects
-                networks:
-                        - backend_network
         nginx:
                 build:
                         context: .
@@ -33,10 +23,3 @@ services:
                         - ./certbot/conf:/etc/letsencrypt
                         - ./certbot/www:/var/www/certbot
                 entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-
-networks:
-        backend_network:
-                driver: bridge
-
-
-
