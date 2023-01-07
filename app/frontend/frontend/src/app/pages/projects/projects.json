@@ -1,21 +1,8 @@
 [
     {
-        "title": "This Site",
-        "source": "https://github.com/haondt/website",
-        "description": "This is a full-stack website, hosted on a vps. It is built with Angular and Flask, all wrapped up in a Docker-Compose stack.",
-        "tech": [
-            "Angular",
-            "Docker",
-            "NGINX"
-        ],
-        "images": [
-            "website/0.png"
-        ]
-    },
-    {
         "title": "Obsidian",
         "source": "https://github.com/haondt/obsidian",
-        "description": "My home server, which runs services, hosts network storage and provides monitoring tools. Service containers are managed with Proxmox, Docker and LXC. Most configuration is done through docker-compose, the configuration files for which I keep hosted on GitHub.",
+        "description": "My home server, which runs various services, hosts network storage and provides monitoring tools. Service containers are managed with Proxmox, Docker and LXC. Most configuration is done through docker-compose, the configuration files for which I keep hosted on GitHub.",
         "tech": [
             "Linux",
             "Virtualization",
@@ -36,6 +23,60 @@
             "obsidian/3.png",
             "obsidian/4.png",
             "obsidian/0.png"
+        ]
+    },
+    {
+        "title": "pyreminder",
+        "source": "https://github.com/haondt/pyreminder",
+        "description": "Pyreminder is a dead-simple tool for checking release statuses and sending notifications. The pyreminder repo makes use of GitHub Actions to automatically build and deploy docker images to Docker Hub.",
+        "tech": [
+            "Python",
+            "GitHub Actions",
+            "CI/CD",
+            "Docker"
+        ],
+        "images": [
+            "pyreminder/0.png"
+        ]
+    },
+    {
+        "title": "This Site",
+        "source": "https://github.com/haondt/website",
+        "description": "This is a full-stack website, hosted on a vps. It is built with Angular and Flask, all wrapped up in a Docker-Compose stack.",
+        "tech": [
+            "Angular",
+            "Docker",
+            "NGINX"
+        ],
+        "images": [
+            "website/0.png"
+        ]
+    },
+    {
+        "title": "Ascii-Art",
+        "source": "https://github.com/haondt/ascii-art",
+        "description": "Generates ascii (and unicode) art from images.",
+        "tech": [
+            "Python",
+            "Numpy",
+            "Pillow",
+            "Scikit-Image"
+        ],
+        "images": [
+            "ascii-art/0.png"
+        ]
+    },
+    {
+        "title": "CommentCounter",
+        "source": "https://github.com/haondt/CommentCounter",
+        "description": "A Reddit bot that counts comments based on the occurrences of given words.",
+        "tech": [
+            "Python",
+            "PRAW",
+            "pytest"
+        ],
+        "images": [
+            "comment-counter/0.png"
         ]
     }
 ]
