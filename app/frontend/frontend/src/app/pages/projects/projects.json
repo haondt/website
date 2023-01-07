@@ -2,7 +2,7 @@
     {
         "title": "Obsidian",
         "source": "https://github.com/haondt/obsidian",
-        "description": "My home server, which runs various services, hosts network storage and provides monitoring tools. Service containers are managed with Proxmox, Docker and LXC. Most configuration is done through docker-compose, the configuration files for which I keep hosted on GitHub.",
+        "description": "My home server, which runs various services, hosts network storage and provides monitoring tools. Service containers are managed with Proxmox, Docker and LXC. Most configuration is done through docker-compose, the configuration files for which I keep hosted on GitHub. Alterting and monitoring is done through Grafana, with the alerts being sent to a Discord webhook.",
         "tech": [
             "Linux",
             "Virtualization",
@@ -42,9 +42,10 @@
     {
         "title": "This Site",
         "source": "https://github.com/haondt/website",
-        "description": "This is a full-stack website, hosted on a vps. It is built with Angular and Flask, all wrapped up in a Docker-Compose stack.",
+        "description": "This is a full-stack website, hosted on a vps. It is built with Angular 15 and deployed with Docker Compose.",
         "tech": [
             "Angular",
+            "Typescript",
             "Docker",
             "NGINX"
         ],
