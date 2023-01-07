@@ -1,0 +1,15 @@
+[
+    {
+        "title": "This Site",
+        "source": "https://github.com/haondt/website",
+        "description": "This is a full-stack website, hosted on a vps. It is built with Angular and Flask, all wrapped up in a Docker-Compose stack.",
+        "tech": [
+            "Angular",
+            "Docker",
+            "NGINX"
+        ],
+        "images": [
+            "website/0.png"
+        ]
+    }
+]

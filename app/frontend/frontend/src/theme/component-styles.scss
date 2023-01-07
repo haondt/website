@@ -5,6 +5,7 @@
 @use "../app/nav/_nav.component.scss" as nav;
 @use "../app/pages/home/_home.component.scss" as home;
 @use "../app/pages/about/_about.component.scss" as about;
+@use "../app/pages/projects/_projects.component.scss" as projects;
 
 @mixin theme($theme){
     /* angular material styles */
@@ -16,4 +17,5 @@
     @include nav.theme($theme);
     @include home.theme($theme);
     @include about.theme($theme);
+    @include projects.theme($theme);
 }

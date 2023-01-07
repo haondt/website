@@ -2,6 +2,7 @@ div.intro {
     display: flex;
     flex-direction: column;
     gap: 50px;
+    padding-top: 25px;
 }
 
 div.image-content {
@@ -44,6 +45,7 @@ h1 {
     mask-size: contain;
     height: 30px;
     margin-left: -5px;
+    margin-right: -5px;
 }
 
 div.links {
@@ -51,5 +53,5 @@ div.links {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
 }
