@@ -2,7 +2,7 @@
     {
         "title": "Obsidian",
         "source": "https://github.com/haondt/obsidian",
-        "description": "My home server, which runs various services, hosts network storage and provides monitoring tools. Service containers are managed with Proxmox, Docker and LXC. Most configuration is done through docker-compose, the configuration files for which I keep hosted on GitHub. Alterting and monitoring is done through Grafana, with the alerts being sent to a Discord webhook.",
+        "description": "My home server, which runs various services, hosts network storage and provides monitoring tools. Service containers are managed with Proxmox, Docker and LXC. Most configuration is done through docker-compose, the configuration files for which I keep hosted on GitHub. Alerting and monitoring is done through Grafana, with the alerts being sent to a Discord webhook.",
         "tech": [
             "Linux",
             "Virtualization",
