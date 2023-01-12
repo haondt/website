@@ -11,4 +11,4 @@ RUN npm run build
 
 # production stage
 FROM nginx:alpine as production-stage
-COPY --from=build-stage /app/build/frontend /dist/
+COPY --from=build-stage /app/dist/frontend /dist/
