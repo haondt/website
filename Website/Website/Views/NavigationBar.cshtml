@@ -1,0 +1,28 @@
+﻿@using Website.Domain
+@using Website.Views
+@model NavigationBarModel
+
+<ul class="flex flex-row gap-20" id="navigationBar">
+    @foreach (var websiteView in Model.WebsiteViews)
+    {
+        <li class='@((websiteView == Model.CurrentView) ? "selected" : "")'>
+            <div hx-trigger="onNavigate from:next button"
+                hx-target="#content"
+                hx-push-url="/@websiteView.ToString().ToLower()"
+                hx-get="/partials/@websiteView.ToString()"
+                hx-swap="innerHTML transition:true"
+                ></div>
+            <div 
+                hx-trigger="onNavigate from:next button"
+                hx-target="#navigationBar"
+                hx-get="/partials/navigationbar"
+                hx-vals='{"currentView": "@websiteView.ToString()"}'
+                ></div>
+            <button 
+                class="navigation loading" 
+                _="on click trigger onNavigate end on load debounced at 150ms remove .loading"
+                >@websiteView.ToString().ToLower()</button>
+        </li>
+    }
+</ul>
+
