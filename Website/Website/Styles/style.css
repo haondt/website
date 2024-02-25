@@ -168,24 +168,24 @@ button.icon:hover {
     z-index: 2000;
 }
 
+
 ::-webkit-scrollbar-track {
     background: var(--color-dark-bg);
     z-index: 2001;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--color-bright-bg);
-    border-radius:5px;
+    background-color: var(--color-bright-bg);
     z-index: 2001;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-dark-fg);
-    z-index: 2001;
+    background-color: var(--color-dark-fg);
 }
 
 ::-webkit-scrollbar-corner {
-    background: var(--color-dark-bg);
+    background: var(--color-bright-bg);
     z-index: 2001;
 }
 
