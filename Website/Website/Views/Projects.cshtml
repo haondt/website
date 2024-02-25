@@ -36,7 +36,12 @@
                             else remove @@disabled from the last <button/> in me
                             end
 
-                            set (the first <.project-image-track-container/> in me)'s *transform to `translateX(-${@@image_index}00%)`
+                            -- set (the first <.project-image-track-container/> in me)'s *transform to `translateX(-${@@image_index}00%)`
+                            set idToHide to `project-img-@(projectIndex)-${@@previous_index}`
+                            remove .visible from #{idToHide}
+                            set idToShow to `project-img-@(projectIndex)-${@@image_index}`
+                            add .visible to #{idToShow}
+
                             set idToDeselect to `project-tab-@(projectIndex)-${@@previous_index}`
                             remove .selected from #{idToDeselect}
                             set idToSelect to `project-tab-@(projectIndex)-${@@image_index}`
@@ -51,14 +56,13 @@
                         </button>
                         <div class="project-image-carousel">
                             <div class="project-image-window">
-                                <div class="project-image-track-container">
-                                    <div class="project-image-track" style="width: @(project.ImagePaths.Count*100)%">
-                                        @foreach (var path in project.ImagePaths)
-                                        {
-                                           <img src="@path" />
-                                        }
-                                    </div>
-                                </div>
+                                @for (var pathIndex=0; pathIndex < project.ImagePaths.Count; pathIndex++)
+                                {
+                                   <img 
+                                       src="@project.ImagePaths[pathIndex]" 
+                                       class="@(pathIndex == 0 ? "visible" : "")"
+                                       id="project-img-@projectIndex-@pathIndex"/>
+                                }
                             </div>
                             <div class="project-image-indicator">
                                 @for (var pathIndex=0; pathIndex < project.ImagePaths.Count; pathIndex++)
