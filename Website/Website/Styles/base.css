@@ -95,3 +95,5 @@ ul {
 
 .width-100 { width: 100%; }
 
+span.spacer { flex: 1 0 auto; }
+

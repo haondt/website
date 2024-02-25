@@ -9,7 +9,7 @@ namespace Website.Domain
     {
         private readonly SiteData _siteData;
         public HomeSettings Home => _siteData.Home;
-        public ProjectSettings Project => _siteData.Project;
+        public List<ProjectSettings> Projects => _siteData.Projects;
         public AboutSettings About  => _siteData.About;
         public ColorSettings Colors => _siteData.Colors;
         public string SiteName => _siteData.Name;
@@ -21,6 +21,7 @@ namespace Website.Domain
             _siteData = siteDataOptions.Value;
             _defaultViewModels[HomeModel.Id] = new HomeModel { Settings = Home };
             _defaultViewModels[AboutModel.Id] = new AboutModel { Settings = About };
+            _defaultViewModels[ProjectsModel.Id] = new ProjectsModel { Settings = Projects };
         }
 
         public bool TryGetDefaultPageModel(WebsiteView page, out IViewModel? viewModel) => _defaultViewModels.TryGetValue(page, out viewModel);

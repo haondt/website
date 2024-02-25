@@ -1,0 +1,79 @@
+﻿@model Website.Views.ProjectsModel
+<div class="page">
+    @for (var projectIndex = 0; projectIndex <  Model.Settings.Count; projectIndex++)
+    {
+        var project = Model.Settings[projectIndex];
+
+        <div class="card">
+            <div class="flex flex-row width-100">
+                <h2>@project.Title</h2>
+                <span class="spacer"></span>
+                @if (!string.IsNullOrEmpty(project.Source))
+                {
+                    <button class="icon" onclick="window.open('@project.Source', '_blank')">
+                        <i class="fa-solid fa-code"></i>
+                        source
+                    </button>
+                }
+            </div>
+            <div class="flex flex-col project-content">
+                <p>@project.Description</p>
+                <div class="chipContainer">
+                    @foreach(var tag in project.Tags)
+                    {
+                        <span class="chip">@tag</span>
+                    }
+                </div>
+                @if (project.ImagePaths.Count > 0)
+                {
+                    <div class="project-image-container" image_index="0" previous_index="0"
+                        _="on mutation of @@image_index 
+                            if @@image_index <= 0 add @@disabled to the first <button/> in me
+                            else remove @@disabled from the first <button/> in me
+                            end
+
+                            if @@image_index >= @(project.ImagePaths.Count - 1) add @@disabled to the last <button/> in me
+                            else remove @@disabled from the last <button/> in me
+                            end
+
+                            set (the first <.project-image-track-container/> in me)'s *transform to `translateX(-${@@image_index}00%)`
+                            set idToDeselect to `project-tab-@(projectIndex)-${@@previous_index}`
+                            remove .selected from #{idToDeselect}
+                            set idToSelect to `project-tab-@(projectIndex)-${@@image_index}`
+                            add .selected to #{idToSelect}
+                            
+                            set @@previous_index to @@image_index
+                        ">
+                        <button class="icon"
+                            disabled
+                            _="on click decrement (the closest parent <div.project-image-container/>)'s @@image_index">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <div class="project-image-carousel">
+                            <div class="project-image-window">
+                                <div class="project-image-track-container">
+                                    <div class="project-image-track" style="width: @(project.ImagePaths.Count*100)%">
+                                        @foreach (var path in project.ImagePaths)
+                                        {
+                                           <img src="@path" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-image-indicator">
+                                @for (var pathIndex=0; pathIndex < project.ImagePaths.Count; pathIndex++)
+                                {
+                                    <span class="project-image-tab @((pathIndex == 0) ? "selected" : "")" id="project-tab-@projectIndex-@pathIndex"></span>
+                                }
+                            </div>
+                        </div>
+                        <button class="icon" @if (project.ImagePaths.Count == 1){ <text>disabled</text> }
+                            _="on click increment (the closest parent <div.project-image-container/>)'s @@image_index">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

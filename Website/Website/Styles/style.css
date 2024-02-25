@@ -32,7 +32,7 @@ body {
 }
 
 @keyframes drop-out {
- to { transform: translateY(10px) scale(1.01); }
+ to { transform: translateY(-10px) scale(0.99); }
 }
 
 
@@ -52,10 +52,83 @@ h2 {
     font-size: 1.75rem;
 }
 
-li {
+.project-content {
+    margin-left: 50px;
+    margin-right: 50px;
+    width: calc(100% - 100px);
 }
+
+.project-image-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    width: 100%;
+}
+
+.project-image-indicator {
+    display: flex;
+    flex-direction: row;
+    height: 5px;
+    gap: 15px;
+}
+
+.project-image-tab {
+    height: 100%;
+    flex: 1;
+    border-radius: 5px;
+    background-color: var(--color-dark-fg);
+    transition: background-color 0.5s ease-out;
+}
+
+.project-image-tab.selected {
+    background-color: var(--color-accent);
+}
+
+.project-image-carousel {
+    aspect-ratio: 16 / 9;
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.project-image-window {
+    border-radius: 5px;
+    flex: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image-track {
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+
+.project-image-track-container {
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.project-image-track img {
+    flex: 1;
+    object-fit: cover;
+}
+
+
+@media (max-width: 700px) {
+    .project-content {
+        margin: 0;
+        width: 100%;
+    }
+}
+
 li.selected {
     border-bottom: 2px solid var(--color-accent);
+}
+li.selected button.navigation.loading{
+    background-color: var(--color-bright-bg);
 }
 
 .chipContainer {
@@ -92,7 +165,6 @@ li.selected {
 }
 
 button {
-    cursor: pointer;
     background-color: var(--color-dark-bg);
     color: var(--color-bright-fg);
     padding-bottom: 10px;
@@ -104,14 +176,15 @@ button {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+button:not(:disabled) {
+    cursor: pointer;
+}
+
 button.navigation  {
     margin-bottom:5px;
     font-size: 1.25rem;
 }
 
-li.selected button.navigation.loading{
-    background-color: var(--color-bright-bg);
-}
 
 
 
@@ -120,9 +193,7 @@ button.navigation:hover {
 }
 
 button.icon {
-    cursor: pointer;
     background-color: var(--color-dark-bg);
-    color: var(--color-bright-fg);
     font-size: 1rem;
     display: flex;
     flex-direction: row;
@@ -133,7 +204,7 @@ button.icon {
 
 }
 
-button.icon:hover {
+button.icon:hover:not(:disabled) {
     cursor: pointer;
     background-color: var(--color-bright-bg);
     color: var(--color-accent);
