@@ -23,5 +23,11 @@ namespace Website.Controllers
         {
             return View(new NavigationBarModel { CurrentView = currentView });
         }
+
+        [HttpGet("image")]
+        public IActionResult GetImage([FromQuery] string imagePath)
+        {
+            return View(new ImageModel { ImagePath = imagePath });
+        }
     }
 }

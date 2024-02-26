@@ -51,11 +51,16 @@ h1 {
 h2 {
     font-size: 1.75rem;
 }
+p {
+    font-size: 1.15rem;
+
+}
 
 .project-content {
     margin-left: 50px;
     margin-right: 50px;
     width: calc(100% - 100px);
+    gap: 15px;
 }
 
 .project-image-container {
@@ -92,21 +97,20 @@ h2 {
     gap: 5px;
 }
 .project-image-window img {
-    height: 99%;
-    width: 99%;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     position: absolute;
     opacity: 0;
     bottom: 0;
-    left: 1%;
-    transition: opacity 0.3s ease, height 0.3s ease, width 0.3s ease, left 0.3s ease;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
 }
 
 .project-image-window img.visible {
-    height: 100%;
-    width: 100%;
     opacity: 1;
-    left: 0px;
+    z-index: 1;
 }
 .project-image-window {
     border-radius: 5px;
@@ -211,7 +215,7 @@ button.icon:hover:not(:disabled) {
 .card {
     border: 1px solid var(--color-dark-fg);
     border-radius: 12px;
-    max-width: 1250px;
+    max-width: 1000px;
     width: calc(100% - 80px);
     margin-left: auto;
     margin-right: auto;
@@ -259,3 +263,42 @@ button.icon:hover:not(:disabled) {
 }
 
 
+body.overlaid #below-overlay {
+    display: block;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#overlay .background {
+    background-color: #000;
+    opacity: 0.75;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+#overlay-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+
+body.overlaid #overlay {
+    display: block;
+}
+
+img.image {
+    max-width: calc(100% - 100px);
+    max-height: calc(100vh - 100px);
+    margin-top: 50px;
+    border-radius: 5px;
+}

@@ -6,6 +6,7 @@
         About,
         Projects,
 
-        NavigationBar
+        NavigationBar,
+        Image
     }
 }

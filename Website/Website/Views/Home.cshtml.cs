@@ -37,7 +37,7 @@ namespace Website.Views
                 {
                     FontAwesomeClass = "fa-brands fa-linkedin-in",
                     Url = Settings.LinkedIn,
-                    Text = "linkedIn"
+                    Text = "linkedin"
                 },
             }.Where(bl => !string.IsNullOrEmpty(bl.Url));
 

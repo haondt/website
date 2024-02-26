@@ -4,7 +4,7 @@
     {
         var project = Model.Settings[projectIndex];
 
-        <div class="card">
+        <div class="card gap-20">
             <div class="flex flex-row width-100">
                 <h2>@project.Title</h2>
                 <span class="spacer"></span>
@@ -36,7 +36,6 @@
                             else remove @@disabled from the last <button/> in me
                             end
 
-                            -- set (the first <.project-image-track-container/> in me)'s *transform to `translateX(-${@@image_index}00%)`
                             set idToHide to `project-img-@(projectIndex)-${@@previous_index}`
                             remove .visible from #{idToHide}
                             set idToShow to `project-img-@(projectIndex)-${@@image_index}`
@@ -61,7 +60,13 @@
                                    <img 
                                        src="@project.ImagePaths[pathIndex]" 
                                        class="@(pathIndex == 0 ? "visible" : "")"
-                                       id="project-img-@projectIndex-@pathIndex"/>
+                                       id="project-img-@projectIndex-@pathIndex"
+                                       hx-get="/partials/image"
+                                       hx-vals='{"imagePath": "@project.ImagePaths[pathIndex]"}'
+                                       hx-swap="innderHTML"
+                                       hx-target="#overlay-content"
+                                       hx-trigger="click"
+                                       _="on click add .overlaid to <body/>"/>
                                 }
                             </div>
                             <div class="project-image-indicator">
