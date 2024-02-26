@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Serialization;
 using Website.Domain;
 using Website.Models;
 using Website.Styles;
@@ -7,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var CORS_POLICY = "_websitePolicy";
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddMvc();
 
@@ -29,19 +27,8 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-//app.UseRouting();
-
 app.UseCors(CORS_POLICY);
 app.UseAuthorization();
 app.MapControllers();
-/*
-app.Map("{**slug}", context =>
-{
-    context.Response.StatusCode = StatusCodes.Status404NotFound;
-    return Task.CompletedTask;
-});
-app.MapFallbackToFile("index.html");
-*/
-
 
 app.Run();
