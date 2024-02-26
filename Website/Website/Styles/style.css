@@ -146,12 +146,21 @@ li.selected button.navigation.loading{
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    font-size: 0.75rem;
+
+    transition: background-color 1s ease;
+}
+
+.big-chip {
+    font-size: 1rem;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-
-    transition: background-color 1s ease;
 }
 
 .chip.accent {

@@ -5,7 +5,7 @@
         var project = Model.Settings[projectIndex];
 
         <div class="card gap-20">
-            <div class="flex flex-row width-100">
+            <div class="flex flex-row flex-wrap width-100">
                 <h2>@project.Title</h2>
                 <span class="spacer"></span>
                 @if (!string.IsNullOrEmpty(project.Source))

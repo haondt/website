@@ -8,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 var CORS_POLICY = "_websitePolicy";
 
 // Add services to the container.
-//builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddMvc();
 
