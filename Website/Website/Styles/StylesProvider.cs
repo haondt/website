@@ -36,7 +36,7 @@ namespace Website.Styles
 
         private string LoadFile(string fileName)
         {
-            var filePath = Path.Combine(_webHostEnvironment.ContentRootPath, "Styles", fileName);
+            var filePath = Path.Combine(_webHostEnvironment.ContentRootPath, "wwwroot", fileName);
             return System.IO.File.ReadAllText(filePath);
         }
     }

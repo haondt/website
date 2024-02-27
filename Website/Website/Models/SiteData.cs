@@ -7,5 +7,6 @@
         public required List<ProjectSettings> Projects { get; set; }
         public required AboutSettings About { get; set; }
         public required ColorSettings Colors { get; set; }
+        public required AssetsSettings Assets { get; set; }
     }
 }

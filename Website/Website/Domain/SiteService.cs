@@ -12,6 +12,7 @@ namespace Website.Domain
         public List<ProjectSettings> Projects => _siteData.Projects;
         public AboutSettings About  => _siteData.About;
         public ColorSettings Colors => _siteData.Colors;
+        public AssetsSettings Assets => _siteData.Assets;
         public string SiteName => _siteData.Name;
         public string Name => _siteData.Name;
 

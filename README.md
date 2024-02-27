@@ -9,6 +9,14 @@ A full-stack implementation of my personal website, using the following technolo
 * ASP.NET MVC
 
 ### Deployment
+
+To run locally, just open the visual studio project and run. Requires docker. The nginx config can also be run locally with
+
+```shell
+cd deploy
+docker compose -f docker-compose.dev.yml up -d
+```
+
 - clone repo
 - `sudo chmod -R 777 app/` (TODO: not this)
 - `cd app && bash init-letsencrypt` (only need to do this once ever)

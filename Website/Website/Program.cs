@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.StaticFiles;
 using Website.Domain;
 using Website.Models;
 using Website.Styles;
@@ -22,6 +23,8 @@ builder.Configuration.AddEnvironmentVariables();
 builder.Services.Configure<SiteData>(builder.Configuration.GetSection(nameof(SiteData)));
 builder.Services.AddSingleton<StylesProvider>();
 builder.Services.AddSingleton<SiteService>();
+builder.Services.AddSingleton<AssetProvider>();
+builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
 var app = builder.Build();
 

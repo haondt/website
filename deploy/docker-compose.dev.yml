@@ -1,54 +1,29 @@
 version: '3'
 
 services:
-        frontend:
+        website:
                 build:
-                        context: ./frontend
-                working_dir: /code
-                volumes:
-                        - ./frontend/frontend/src:/code/src/
-                        - ./frontend/config.dev.json:/code/src/config.json
+                        context: ../Website
+                        dockerfile: ../Website/Website/Dockerfile
                 stdin_open: true # docker run -i
                 tty: true # docker run -t
                 networks:
-                        - frontend_network
-        backend:
-                build:
-                        context: ./backend
-                working_dir: /code
-                command: python3 app.py
+                        - nginx
+                env_file:
+                        - deploy.env
                 volumes:
-                        - ./backend/flask:/code
-                        - /projects
-                networks:
-                        - backend_network
-                depends_on:
-                        - db
-        db:
-                image: mysql:5.7
-                environment:
-                        MYSQL_DATABASE: 'my-app-db'
-                        MYSQL_ROOT_PASSWORD: 'password'
-                networks:
-                        - backend_network
+                        - ./config/assets:/assets
         nginx:
                 image: nginx:alpine
                 ports:
                         - "80:80"
                 depends_on:
-                        - backend
-                        - frontend
+                        - website
                 volumes:
                         - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
                 networks:
-                        - backend_network
-                        - frontend_network
+                        - nginx
 
 networks:
-        backend_network:
+        nginx:
                 driver: bridge
-        frontend_network:
-                driver: bridge
-
-
-
