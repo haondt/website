@@ -2,10 +2,7 @@ name: Deploy
 on:
   push:
     branches:
-      - htmx
-#  release:
-#    types: [published]
-#    tags: ['v*.*.*']
+      - master
 
 jobs:
   deploy:
