@@ -11,7 +11,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
       - name: SSH to remote machine and deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
