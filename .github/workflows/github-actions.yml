@@ -13,8 +13,12 @@ jobs:
     steps:
       - name: checkout code
       - name: SSH to remote machine and deploy
-        run: |-
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} noah@${{ secrets.SSH_HOST }}
-          'cd /home/noah/website/deploy
-            && git pull
-            && ./deploy.sh --prod'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ~/website/deploy
+            git pull
