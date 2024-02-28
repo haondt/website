@@ -1,0 +1,20 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - htmx
+#  release:
+#    types: [published]
+#    tags: ['v*.*.*']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+      - name: SSH to remote machine and deploy
+        run: |-
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} noah@${{ secrets.SSH_HOST }}
+          'cd /home/noah/website/deploy
+            && git pull
+            && ./deploy.sh --prod'
