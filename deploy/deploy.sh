@@ -20,4 +20,8 @@ docker run --rm \
     pyyaml \
     python3 yml2env/yml2env.py > deploy.env
 
-docker compose -f docker-compose.dev.yml up -d --build
+if [ "$#" -eq 0 ]; then
+    docker compose -f docker-compose.dev.yml up -d --build
+elif [ "$1" == "--prod" ]; then
+    docker compose -f docker-compose.yml up -d --build
+fi

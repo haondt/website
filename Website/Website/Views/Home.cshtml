@@ -9,7 +9,7 @@
     }
     <div class="card">
         <h2>@Model.Settings.Bio</h2>
-        <div class="flex flex-row gap-10 flex-wrap">
+        <div class="flex flex-row gap-10 flex-wrap justify-evenly">
             @foreach(var bl in Model.GetButtonLinks())
             {
                 <button class="icon" onclick="window.open('@bl.Url', '_blank')">

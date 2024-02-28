@@ -101,3 +101,6 @@ span.spacer { flex: 1 0 auto; }
 .position-relative { position: relative; }
 
 .display-none { display: none; }
+
+.justify-center { justify-content: center; }
+.justify-evenly { justify-content: space-evenly; }

@@ -20,6 +20,9 @@ namespace Website.Controllers
             if ("style.css".Equals(assetPath))
                 return  Content(stylesProvider.GetStyles(), "text/css");
 
+            if (assetPath.Contains('/') || assetPath.Contains('\\'))
+                return BadRequest("Invalid path.");;
+
             if (!contentTypeProvider.TryGetContentType(assetPath, out var contentType))
                 return BadRequest("Unsupported file type.");
 
