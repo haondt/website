@@ -1,0 +1,22 @@
+﻿@model Website.Views.HomeModel
+
+<div class="page">
+    @if (!string.IsNullOrEmpty(Model.Settings.IconPath))
+    {
+        <div class="mt-15">
+            <img src="@Model.Settings.IconPath" height="@Model.Settings.IconHeight"/>
+        </div>
+    }
+    <div class="card">
+        <h2>@Model.Settings.Bio</h2>
+        <div class="flex flex-row gap-10 flex-wrap justify-evenly">
+            @foreach(var bl in Model.GetButtonLinks())
+            {
+                <button class="icon" onclick="window.open('@bl.Url', '_blank')">
+                    <i class="@bl.FontAwesomeClass"></i>
+                    @bl.Text
+                </button>
+            }
+        </div>
+    </div>
+</div>

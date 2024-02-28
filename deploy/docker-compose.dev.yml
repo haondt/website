@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+        website:
+                build:
+                        context: ../Website
+                        dockerfile: ../Website/Website/Dockerfile
+                stdin_open: true # docker run -i
+                tty: true # docker run -t
+                networks:
+                        - nginx
+                env_file:
+                        - deploy.env
+                volumes:
+                        - ./config/assets:/assets
+        nginx:
+                image: nginx:alpine
+                ports:
+                        - "80:80"
+                depends_on:
+                        - website
+                volumes:
+                        - ./nginx/dev.conf:/etc/nginx/nginx.conf:ro
+                networks:
+                        - nginx
+
+networks:
+        nginx:
+                driver: bridge
