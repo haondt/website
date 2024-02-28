@@ -17,10 +17,21 @@ cd deploy
 docker compose -f docker-compose.dev.yml up -d
 ```
 
-- clone repo
-- `sudo chmod -R 777 app/` (TODO: not this)
-- `cd app && bash init-letsencrypt` (only need to do this once ever)
-- `docker compose up -d`
+To deploy to webserver:
+
+First, clone repo. The first time it is being deployed, we have to create dummy certificates to allow nginx to get the real certificates.
+
+```shell
+cd deploy
+touch deploy.env # required for nginx docker image
+./init-letsencrypt.sh
+```
+
+Afterwards, the docker stack is self-sufficient.
+
+```shell
+./deploy.sh --prod
+```
 
 # History
 
