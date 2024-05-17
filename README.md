@@ -1,36 +1,22 @@
 # Website
 
 A full-stack implementation of my personal website, using the following technologies:
+
 * Docker
 * htmx
 * hyperscript
 * NGINX
 * LetsEncrypt / Certbot
 * ASP.NET MVC
+* gitlab ci/cd. viewable on the [upstream gitlab repo](https://gitlab.com/haondt/website)
 
-### Deployment
+### Development
 
-To run locally, just open the visual studio project and run. Requires docker. The nginx config can also be run locally with
+To run locally, just open the visual studio project and run. Requires docker.
 
 ```shell
 cd deploy
 docker compose -f docker-compose.dev.yml up -d
-```
-
-To deploy to webserver:
-
-First, clone repo. The first time it is being deployed, we have to create dummy certificates to allow nginx to get the real certificates.
-
-```shell
-cd deploy
-touch deploy.env # required for nginx docker image
-./init-letsencrypt.sh
-```
-
-Afterwards, the docker stack is self-sufficient.
-
-```shell
-./deploy.sh --prod
 ```
 
 # History
