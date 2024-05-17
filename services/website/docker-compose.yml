@@ -9,4 +9,5 @@ services:
       - ./website/assets:/assets
     environment:
       VIRTUAL_HOST: noahburghardt.ca
+      LETSENCRYPT_HOST: noahburghardt.ca
       VIRTUAL_PORT: 8080
