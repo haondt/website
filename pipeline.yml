@@ -12,3 +12,6 @@ tasks:
     file: Website/Website/Dockerfile
     registries:
       - gitlab
+  - type: docker-deploy
+    target: $TARGET_HOST
+    key: $TARGET_SSH_KEY
