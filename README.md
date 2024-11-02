@@ -58,10 +58,14 @@ v4 was built with the goal of reducing dependencies and fixing the shortcomings 
 
 I think this version does a good job at taking the best parts of all the previous versions, an horizontal navigation bar, buttons with both text and icons, textual chips, mobile support, a simple design and few dependencies. It uses the same colorscheme as v3, but is much more sparing with the accent color. It also makes liberal use of css transitions, making the site feel smooth and fluid.
 
+<img src="./img/v4_home.png" width="350">
+<img src="./img/v4_about.png" width="350">
+<img src="./img/v4_projects.png" width="350">
+
 ## v5: python + htmx
 
-In the interest of further shrinking down the codebase for the site, I moved from .NET to python. I kept the same style as v4, but tried to make the site less "annoying" to use. I removed some css animations that made the site seem to stutter a bit or feel less responsive. I also removed the `mailto` link as I don't like the way those links work. 
+In the interest of further shrinking down the codebase for the site, I moved from .NET to python. I kept the same style as v4, but tried to make the site less "annoying" to use. I removed some css animations that made the site seem to stutter a bit or feel less responsive. I also removed the `mailto` link as I don't like the way those links work.
 
-I also merged the home and about pages, and anonymized some more of the site.
+I merged the home and about pages, and anonymized some more of the site. One of my favorite features of this version is finally learning about `color-scheme: dark;`, which lets me use the native scroll bar without it being blindingly white. Previously I had been meticulously restyling each component of the scroll bar.
 
 </details>
