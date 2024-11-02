@@ -8,10 +8,7 @@ tasks:
       - source: push
         has_tag: true
         tag_source: latest
-    context: Website
-    file: Website/Website/Dockerfile
+    context: .
+    file: Dockerfile
     registries:
       - gitlab
-  - type: docker-deploy
-    target: $TARGET_HOST
-    key: $TARGET_SSH_KEY

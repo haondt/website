@@ -1,10 +1,5 @@
 # vim swap files
 .*.swp
 
-# vscode things
-.vs/
-.vscode/
-
-# certificate things
-**/certbot/*
-!**/certbot/.gitkeep
+# python things
+__pycache__

@@ -1,0 +1,193 @@
+{% with active='projects' %}
+    {% include 'navbar.html' %}
+{% endwith %}
+
+{% macro carousel(images) %}
+    <div class="flex flex-row align-center"
+        style="width:100%;gap:15px;"
+        image_index="0" previous_index="0"
+        _="
+            on mutation of @image_index
+                if @image_index <= 0
+                    add @disabled to the first <button/> in me
+                else
+                    remove @disabled from the first <button/> in me
+                end
+
+                if @image_index >= {{ images|length - 1 }}
+                    add @disabled to the last <button/> in me
+                else 
+                    remove @disabled from the last <button/> in me
+                end
+
+                set currentImageClass to `image-index-${@image_index}`
+                remove .hidden from the first .{currentImageClass} in me
+                set currentTabClass to `tab-index-${@image_index}`
+                add .selected to the first .{currentTabClass} in me
+
+                set previousImageClass to `image-index-${@previous_index}`
+                add .hidden to the first .{previousImageClass} in me
+                set previousTabClass to `tab-index-${@previous_index}`
+                remove .selected from the first .{previousTabClass} in me
+
+                set @previous_index to @image_index
+        ">
+    <style>
+        @scope {
+
+            .project-image-carousel {
+                aspect-ratio: 16/9;
+                flex: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .project-image-window {
+                border-radius: 5px;
+                flex: auto;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .project-image {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                position: absolute;
+                bottom: 0;
+                opacity: 1;
+                z-index: 1;
+                transition: opacity 0.3s ease;
+                cursor: pointer;
+            }
+
+            .project-image.hidden {
+                opacity: 0;
+                z-index: -1;
+            }
+
+            .project-image-indicator {
+                display: flex;
+                flex-direction: row;
+                height: 5px;
+                gap: 15px;
+            }
+
+            .project-image-tab {
+                height: 100%;
+                flex: 1;
+                border-radius: 5px;
+                background-color: var(--color-dark-fg);
+                transition: background-color 0.5s ease-out;
+            }
+
+            .project-image-tab.selected {
+                background-color: var(--color-accent);
+            }
+
+            .button {
+                align-self: stretch;
+            }
+
+        }
+    </style>
+    <button class="button icon" disabled _="on click decrement (the closest parent <div/>)'s @image_index"><i class="fa-solid fa-chevron-left"></i></button>
+    <div class="project-image-carousel">
+        <div class="project-image-window">
+            {% for image in images %}
+                <img 
+                    src={{ image }} 
+                    class="{% if loop.index != 1 %} hidden{% endif %} image-index-{{ loop.index - 1 }} project-image" 
+                    hx-get="/hx/image-modal?target={{ image }}"
+                    hx-trigger="click"
+                />
+            {% endfor %}
+        </div>
+        <div class="project-image-indicator">
+        {% for image in images %}
+            <span class="project-image-tab {% if loop.index == 1 %} selected{% endif %} tab-index-{{ loop.index - 1}}"></span>
+        {% endfor %}
+        </div>
+    </div>
+    <button class="button icon"{% if images|length < 2 %} disabled{% endif %} _="on click increment (the closest parent <div/>)'s @image_index"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+{% endmacro %}
+
+{% macro project(title, description, source, chips, images) %}
+    <div class="card">
+        <div class="flex flex-row" style="width:100%">
+            <h2>{{ title }}</h2>
+            <span class="flex-grow-1"></span>
+            {% if source %}
+                <button class="button icon" onclick="window.open('{{ source }}', '_blank')">
+                    <i class="fa-solid fa-code"></i>
+                    source
+                </button>
+            {% endif %}
+        </div>
+        <div style="width:100%">
+            <style>
+                @scope (.container) {
+                    @media (min-width: 600px) {
+                        :scope {
+                            margin-left: 50px;
+                            margin-right: 50px;
+                        }
+                    }
+                }
+            </style>
+            <div class="container flex flex-col" style="gap:15px;">
+                <p>{{ description }}</p>
+                <div class="chip-container">
+                    {% for chip in chips %}
+                        <span class="chip">{{ chip }}</span>
+                    {% endfor %}
+                </div>
+                {{ carousel(images) }}
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+<div class="flex flex-col" style="gap:20px;">
+    {{ project(
+        'athena', 
+        'A file-based rest api client. I built athena so I could store my api documentation inside the same repo as the project. Additionally, it has several benefits over other api clients, such as the ability to leverage python scripting, the freedom to use any text editor as the UI and being extremely lightweight.',
+        'https://gitlab.com/haondt/athena',
+        ['Python', 'PyPI', 'MKDocs', 'PyTest'],
+        ['static/athena_1.png', 'static/athena_2.png', 'static/athena_3.png']
+    ) }}
+
+    {{ project(
+        'Firefly III Post-Processor', 
+        'A suite of tools to augment the rule system in Firefly III. In essence, this project allows you to process transactions in Firefly III through a Node-RED flow, allowing for much more powerful operations as compared to the built-in rule system.',
+        'https://github.com/haondt/firefly-iii-pp',
+        ['Docker Compose', 'C#', 'Angular', 'Typescript', 'Node-RED'],
+        ['static/firefly_iii_pp_2.jpg', '/static/firefly_iii_pp_1.jpg']
+    ) }}
+
+    {{ project(
+        'pyreminder', 
+        'pyreminder is a minimal tool for checking statuses and sending notifications.',
+        'https://gitlab.com/haondt/pyreminder',
+        ['Python', 'MKDocs'],
+        ['static/pyreminder.png']
+    ) }}
+
+    {{ project(
+        'medea', 
+        'A command-line developers toolbox. Similar to projects like CyberChef and DevToys, medea offers tools for quick text generation and processing, like creating hashes and parsing jwts.',
+        'https://github.com/haondt/medea',
+        ['Rust', 'Cargo'],
+        ['static/medea_1.png', 'static/medea_2.png']
+    ) }}
+
+    {{ project(
+        'Website', 
+        'This website has been through a couple iterations. In it\'s current form it\'s powered by python, htmx and hyperscript. It\'s mostly static, but there is some light scripting for the image carousels. Deployment to a vps is handled by a GitLab pipeline.',
+        'https://gitlab.com/haondt/website',
+        ['Python', 'Flask', 'Hyperscript', 'HTMX'],
+        ['static/website_1.png']
+    ) }}
+</div>
