@@ -21,7 +21,7 @@
         </style>
         {% for target in ['home', 'projects'] %}
         <div class="nav-item flex flex-col" style="gap:5px;">
-            <button class="button">{{ target }}</button>
+            <button class="button" hx-get="hx/{{ target }}" hx-target="#content" hx-push-url="{{ target }}">{{ target }}</button>
             <div class="selection-indicator{% if target == active %} active{% endif %}"></div>
         </div>
         {% endfor %}
