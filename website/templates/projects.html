@@ -72,7 +72,12 @@
     <div class="project-image-carousel">
         <div class="project-image-window">
             {% for image in images %}
-                <img src={{ image }} class="{% if loop.index != 1 %} hidden{% endif %} image-index-{{ loop.index - 1 }} project-image"/>
+                <img 
+                    src={{ image }} 
+                    class="{% if loop.index != 1 %} hidden{% endif %} image-index-{{ loop.index - 1 }} project-image" 
+                    hx-get="/hx/image-modal?target={{ image }}"
+                    hx-trigger="click"
+                />
             {% endfor %}
         </div>
     </div>
