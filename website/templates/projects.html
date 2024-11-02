@@ -150,42 +150,44 @@
     </div>
 {% endmacro %}
 
-{{ project(
-    'athena', 
-    'A file-based rest api client. I built athena so I could store my api documentation inside the same repo as the project. Additionally, it has several benefits over other api clients, such as the ability to leverage python scripting, the freedom to use any text editor as the UI and being extremely lightweight.',
-    'https://gitlab.com/haondt/athena',
-    ['Python', 'PyPI', 'MKDocs', 'PyTest'],
-    ['static/athena_1.png', 'static/athena_2.png', 'static/athena_3.png']
-) }}
+<div class="flex flex-col" style="gap:20px;">
+    {{ project(
+        'athena', 
+        'A file-based rest api client. I built athena so I could store my api documentation inside the same repo as the project. Additionally, it has several benefits over other api clients, such as the ability to leverage python scripting, the freedom to use any text editor as the UI and being extremely lightweight.',
+        'https://gitlab.com/haondt/athena',
+        ['Python', 'PyPI', 'MKDocs', 'PyTest'],
+        ['static/athena_1.png', 'static/athena_2.png', 'static/athena_3.png']
+    ) }}
 
-{{ project(
-    'Firefly III Post-Processor', 
-    'A suite of tools to augment the rule system in Firefly III. In essence, this project allows you to process transactions in Firefly III through a Node-RED flow, allowing for much more powerful operations as compared to the built-in rule system.',
-    'https://github.com/haondt/firefly-iii-pp',
-    ['Docker Compose', 'C#', 'Angular', 'Typescript', 'Node-RED'],
-    ['static/firefly_iii_pp_2.jpg', '/static/firefly_iii_pp_1.jpg']
-) }}
+    {{ project(
+        'Firefly III Post-Processor', 
+        'A suite of tools to augment the rule system in Firefly III. In essence, this project allows you to process transactions in Firefly III through a Node-RED flow, allowing for much more powerful operations as compared to the built-in rule system.',
+        'https://github.com/haondt/firefly-iii-pp',
+        ['Docker Compose', 'C#', 'Angular', 'Typescript', 'Node-RED'],
+        ['static/firefly_iii_pp_2.jpg', '/static/firefly_iii_pp_1.jpg']
+    ) }}
 
-{{ project(
-    'pyreminder', 
-    'pyreminder is a minimal tool for checking statuses and sending notifications.',
-    'https://gitlab.com/haondt/pyreminder',
-    ['Python', 'MKDocs'],
-    ['static/pyreminder.png']
-) }}
+    {{ project(
+        'pyreminder', 
+        'pyreminder is a minimal tool for checking statuses and sending notifications.',
+        'https://gitlab.com/haondt/pyreminder',
+        ['Python', 'MKDocs'],
+        ['static/pyreminder.png']
+    ) }}
 
-{{ project(
-    'medea', 
-    'A command-line developers toolbox. Similar to projects like CyberChef and DevToys, medea offers tools for quick text generation and processing, like creating hashes and parsing jwts.',
-    'https://github.com/haondt/medea',
-    ['Rust', 'Cargo'],
-    ['static/medea_1.png', 'static/medea_2.png']
-) }}
+    {{ project(
+        'medea', 
+        'A command-line developers toolbox. Similar to projects like CyberChef and DevToys, medea offers tools for quick text generation and processing, like creating hashes and parsing jwts.',
+        'https://github.com/haondt/medea',
+        ['Rust', 'Cargo'],
+        ['static/medea_1.png', 'static/medea_2.png']
+    ) }}
 
-{{ project(
-    'Website', 
-    'This website has been through a couple iterations. In it\'s current form it\'s powered by python, htmx and hyperscript. It\'s mostly static, but there is some light scripting for the image carousels. Deployment to a vps is handled by a GitLab pipeline.',
-    'https://gitlab.com/haondt/website',
-    ['Python', 'Flask', 'Hyperscript', 'HTMX'],
-    ['static/website_1.png']
-) }}
+    {{ project(
+        'Website', 
+        'This website has been through a couple iterations. In it\'s current form it\'s powered by python, htmx and hyperscript. It\'s mostly static, but there is some light scripting for the image carousels. Deployment to a vps is handled by a GitLab pipeline.',
+        'https://gitlab.com/haondt/website',
+        ['Python', 'Flask', 'Hyperscript', 'HTMX'],
+        ['static/website_1.png']
+    ) }}
+</div>
