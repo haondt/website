@@ -1,0 +1,7 @@
+services:
+  website:
+    build:
+      context: .
+    container_name: haondt-website
+    ports:
+      -  5001:8000

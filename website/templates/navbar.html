@@ -1,0 +1,30 @@
+<div class="flex flex-col" style="gap:10px;margin-top:20px;margin-bottom:20px;">
+    <div class="flex flex-col align-center">
+        <h1>Haondt</h1>
+    </div>
+
+    <div class="flex flex-row justify-center" style="gap:20px;">
+        <style>
+            @scope {
+                .nav-item > .button {
+                    font-size: 1.25rem;
+                }
+
+                .selection-indicator {
+                    height: 2px;
+                }
+
+                .selection-indicator.active {
+                    background-color: var(--color-accent);
+                }
+            }
+        </style>
+        {% for target in ['home', 'projects'] %}
+        <div class="nav-item flex flex-col" style="gap:5px;">
+            <button class="button">{{ target }}</button>
+            <div class="selection-indicator{% if target == active %} active{% endif %}"></div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
