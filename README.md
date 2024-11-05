@@ -2,12 +2,10 @@
 
 A full-stack implementation of my personal website, using the following technologies:
 
-* Docker
 * htmx
 * hyperscript
-* NGINX
-* LetsEncrypt / Certbot
-* ASP.NET MVC
+* python
+* flask
 * gitlab ci/cd. viewable on the [upstream gitlab repo](https://gitlab.com/haondt/website)
 
 ### Development
