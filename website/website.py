@@ -1,11 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory, url_for
 from jinja2 import TemplateNotFound
+import os
 
 website = Flask(__name__, template_folder='templates', static_folder='static')
 
 @website.route('/', methods=['GET'])
 def default():
     return render_template("index.html")
+
+@website.route('/favicon.ico')
+def favicon():
+    return send_from_directory(
+            os.path.join(website.root_path, 'static'),
+            'favicon.ico',
+            mimetype='image/vnd.microsoft.icon')
 
 @website.route('/hx/<template>')
 def hx_render(template):
@@ -20,6 +28,7 @@ def hx_render(template):
 @website.route('/<template>')
 def render(template):
     return render_template("index.html", target=template)
+
 
 if __name__ == '__main__':
     from livereload import Server
