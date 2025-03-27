@@ -16,7 +16,7 @@
 
                 if @image_index >= {{ images|length - 1 }}
                     add @disabled to the last <button/> in me
-                else 
+                else
                     remove @disabled from the last <button/> in me
                 end
 
@@ -54,6 +54,7 @@
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
+                object-position: top left;
                 position: absolute;
                 bottom: 0;
                 opacity: 1;
@@ -96,9 +97,9 @@
     <div class="project-image-carousel">
         <div class="project-image-window">
             {% for image in images %}
-                <img 
-                    src={{ image }} 
-                    class="{% if loop.index != 1 %} hidden{% endif %} image-index-{{ loop.index - 1 }} project-image" 
+                <img
+                    src={{ image }}
+                    class="{% if loop.index != 1 %} hidden{% endif %} image-index-{{ loop.index - 1 }} project-image"
                     hx-get="/hx/image-modal?target={{ image }}"
                     hx-trigger="click"
                 />
@@ -111,7 +112,7 @@
         </div>
     </div>
     <button class="button icon"{% if images|length < 2 %} disabled{% endif %} _="on click increment (the closest parent <div/>)'s @image_index"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
+</div>
 {% endmacro %}
 
 {% macro project(title, description, source, chips, images) %}
@@ -120,10 +121,10 @@
             <h2>{{ title }}</h2>
             <span class="flex-grow-1"></span>
             {% if source %}
-                <button class="button icon" onclick="window.open('{{ source }}', '_blank')">
+                <a class="button icon" href="{{ source }}"  target="_blank">
                     <i class="fa-solid fa-code"></i>
                     source
-                </button>
+                </a>
             {% endif %}
         </div>
         <div style="width:100%">
@@ -144,7 +145,9 @@
                         <span class="chip">{{ chip }}</span>
                     {% endfor %}
                 </div>
+                {% if images %}
                 {{ carousel(images) }}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -152,7 +155,7 @@
 
 <div class="flex flex-col" style="gap:20px;">
     {{ project(
-        'athena', 
+        'athena',
         'A file-based rest api client. I built athena so I could store my api documentation inside the same repo as the project. Additionally, it has several benefits over other api clients, such as the ability to leverage python scripting, the freedom to use any text editor as the UI and being extremely lightweight.',
         'https://gitlab.com/haondt/athena',
         ['Python', 'PyPI', 'MKDocs', 'PyTest'],
@@ -160,34 +163,53 @@
     ) }}
 
     {{ project(
-        'Firefly III Post-Processor', 
-        'A suite of tools to augment the rule system in Firefly III. In essence, this project allows you to process transactions in Firefly III through a Node-RED flow, allowing for much more powerful operations as compared to the built-in rule system.',
-        'https://github.com/haondt/firefly-iii-pp',
-        ['Docker Compose', 'C#', 'Angular', 'Typescript', 'Node-RED'],
-        ['static/firefly_iii_pp_2.jpg', '/static/firefly_iii_pp_1.jpg']
+        'Homelab CI/CD',
+        'I run a homelab consisting of 70+ Docker containers spread across several machines in multiple geographical locations. Deployment to these machines is done entirely through GitLab repos, self-hosted runners and a custom dynamic pipeline generator. This system also builds all my Docker images, Python packages, NuGet Packages and static sites, and pushes them to their respective hosting platforms.',
+        'https://gitlab.com/haondt/CICD/pipelines',
+        ['CI/CD', 'GitLab', 'Automation', 'Python', 'Containerization'],
+        ['static/ci_1.png', 'static/ci_2.png']
     ) }}
 
     {{ project(
-        'pyreminder', 
-        'pyreminder is a minimal tool for checking statuses and sending notifications.',
-        'https://gitlab.com/haondt/pyreminder',
-        ['Python', 'MKDocs'],
-        ['static/pyreminder.png']
+        'Talos',
+        'A Discord bot for managing Docker containers in my homelab. Talos can connect to Docker hosts both locally and remotely over ssh to execute commands like checking image versions. It also monitors my IaC repositories for available image updates, and commits them. A CI pipeline deploys the change and notifies Talos via a webhook. Talos then notifies me in Discord of the pipeline result. It\'s also highly configurable, and can do things like queuing updates to comply with image pull rate limits. Talos implements structured json logging and OpenTelemetry tracing, allowing for thorough monitoring in Grafana.',
+        'https://gitlab.com/haondt/talos',
+        ['C#', 'Docker', 'Automation'],
+        ['static/talos_1.png', 'static/talos_2.png', 'static/talos_3.png', 'static/talos_4.png']
     ) }}
 
     {{ project(
-        'medea', 
-        'A command-line developers toolbox. Similar to projects like CyberChef and DevToys, medea offers tools for quick text generation and processing, like creating hashes and parsing jwts.',
-        'https://github.com/haondt/medea',
-        ['Rust', 'Cargo'],
-        ['static/medea_1.png', 'static/medea_2.png']
+        'Midas',
+        'A budgeting app built around the idea of using Node-Red to parse csv files.',
+        'https://gitlab.com/haondt/midas',
+        ['Docker Compose', 'C#', 'htmx', 'hyperscript', 'Node-RED', 'sqlite'],
+        ['/static/midas_1.png']
     ) }}
 
     {{ project(
-        'Website', 
-        'This website has been through a couple iterations. In it\'s current form it\'s powered by python, htmx and hyperscript. It\'s mostly static, but there is some light scripting for the image carousels. Deployment to a vps is handled by a GitLab pipeline.',
-        'https://gitlab.com/haondt/website',
-        ['Python', 'Flask', 'Hyperscript', 'HTMX'],
-        ['static/website_1.png']
+        'Homelab Gateway',
+        'Some of the services on my homelab are exposed to the open internet. I use a proxy server to route the requests back to my main server. The proxy server runs NGINX to terminate TLS connections (using autorenewed Let\'sEncrypt certificates) and Authelia to authorize requests, along with fail2ban to ban repeat offenders. It runs Alloy to scrape request metrics and forwards the requests back to the main server over an ecrypted rathole connection. The whole setup is deployed with the aforementioned CI pipeline.',
+        'https://gitlab.com/haondt/deployments/-/tree/main/chert/services',
+        ['Reverse Proxy', 'NGINX', 'Networking'],
+        null
     ) }}
+
+    {{ project(
+        'Homelab ETL',
+        'For all the services I run across my homelab, I run an ETL pipeline to monitor service state. Several data sources, like rsyslog, cAdvisor and OpenTelemetry provide the extraction. Transformation is done in Alloy and sent to a self-hosted LGTM stack. Grafana displays the homelab state in various dashboards and watches health indicators, sending me alerts through Discord if anything is amiss.',
+        'https://gitlab.com/haondt/deployments/-/tree/main/gabbro/services',
+        ['Grafana', 'LGTM', 'Alloy', 'Monitoring', 'ETL'],
+        ['static/grafana_1.png', 'static/grafana_2.png', 'static/grafana_3.png']
+    ) }}
+
+    {{ project(
+        'linktiles',
+        'A tile-based readonly frontend for linkding, a minimal bookmark manager. linktiles also features comprehensive documentation generated with MkDocs and support for forward authentication.',
+        'https://gitlab.com/haondt/linktiles',
+        ['Python', 'PyPI', 'MkDocs', 'htmx', 'hyperscript', 'redis'],
+        ['static/linktiles_1.png', 'static/linktiles_2.png']
+    ) }}
+
 </div>
+
+<div style="height:10rem;"></div>
