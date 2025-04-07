@@ -188,7 +188,7 @@
 
     {{ project(
         'Homelab Gateway',
-        'Some of the services on my homelab are exposed to the open internet. I use a proxy server to route the requests back to my main server. The proxy server runs NGINX to terminate TLS connections (using autorenewed Let\'sEncrypt certificates) and Authelia to authorize requests, along with fail2ban to ban repeat offenders. It runs Alloy to scrape request metrics and forwards the requests back to the main server over an ecrypted rathole connection. The whole setup is deployed with the aforementioned CI pipeline.',
+        'Some of the services on my homelab are exposed to the open internet. I use a proxy server to route the requests back to my main server. The proxy server runs NGINX to terminate TLS connections (using autorenewed Let\'sEncrypt certificates) and Authelia to authorize requests, along with fail2ban to ban repeat offenders. It runs Alloy to scrape request metrics and forwards the requests back to the main server over an encrypted rathole connection. The whole setup is deployed with the aforementioned CI pipeline.',
         'https://gitlab.com/haondt/deployments/-/tree/main/chert/services',
         ['Reverse Proxy', 'NGINX', 'Networking'],
         null
