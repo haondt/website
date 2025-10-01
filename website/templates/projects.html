@@ -163,18 +163,18 @@
     ) }}
 
     {{ project(
-        'Homelab CI/CD',
-        'I run a homelab consisting of 70+ Docker containers spread across several machines in multiple geographical locations. Deployment to these machines is done entirely through GitLab repos, self-hosted runners and a custom dynamic pipeline generator. This system also builds all my Docker images, Python packages, NuGet Packages and static sites, and pushes them to their respective hosting platforms.',
-        'https://gitlab.com/haondt/CICD/pipelines',
-        ['CI/CD', 'GitLab', 'Automation', 'Python', 'Containerization'],
-        ['static/ci_1.png', 'static/ci_2.png']
+        'Homelab Platform',
+        'A Hybrid on-prem/cloud running 100+ services. Uses dynamic CI/CD pipelines and custom Python tooling for automated deployments, secret management and configuration transformations. Includes a monitoring stack, secure gateway, scheduled backups and high-availability.',
+        'https://gitlab.com/haondt/deployments',
+        ['CI/CD', 'GitLab', 'GCP', 'Python', 'Kubernetes', 'Docker', 'Grafana', 'Cloudflare', 'NGINX'],
+        ['static/ci_1.png', 'static/ci_2.png', 'static/grafana_1.png', 'static/grafana_2.png', 'static/grafana_3.png']
     ) }}
 
     {{ project(
         'Talos',
-        'A Discord bot for managing Docker containers in my homelab. Talos can connect to Docker hosts both locally and remotely over ssh to execute commands like checking image versions. It also monitors my IaC repositories for available image updates, and commits them. A CI pipeline deploys the change and notifies Talos via a webhook. Talos then notifies me in Discord of the pipeline result. It\'s also highly configurable, and can do things like queuing updates to comply with image pull rate limits. Talos implements structured json logging and OpenTelemetry tracing, allowing for thorough monitoring in Grafana.',
+        'A Discord bot for managing Docker containers in my homelab. Talos can run remote commands on Docker hosts and monitor IaC repositories for available image updates, and commit them. Talos listens for pipeline webhooks to trigger Discord notifications after deployments and can queue, retry and throttle image pulls. Talos implements structured json logging and OpenTelemetry tracing.',
         'https://gitlab.com/haondt/talos',
-        ['C#', 'Docker', 'Automation'],
+        ['C#', 'Docker', 'Automation', '.NET', 'Redis'],
         ['static/talos_1.png', 'static/talos_2.png', 'static/talos_3.png', 'static/talos_4.png']
     ) }}
 
@@ -184,22 +184,6 @@
         'https://gitlab.com/haondt/midas',
         ['Docker Compose', 'C#', 'htmx', 'hyperscript', 'Node-RED', 'sqlite'],
         ['/static/midas_1.png']
-    ) }}
-
-    {{ project(
-        'Homelab Gateway',
-        'Some of the services on my homelab are exposed to the open internet. I use a proxy server to route the requests back to my main server. The proxy server runs NGINX to terminate TLS connections (using autorenewed Let\'sEncrypt certificates) and Authelia to authorize requests, along with fail2ban to ban repeat offenders. It runs Alloy to scrape request metrics and forwards the requests back to the main server over an encrypted rathole connection. The whole setup is deployed with the aforementioned CI pipeline.',
-        'https://gitlab.com/haondt/deployments/-/tree/main/chert/services',
-        ['Reverse Proxy', 'NGINX', 'Networking'],
-        null
-    ) }}
-
-    {{ project(
-        'Homelab ETL',
-        'For all the services I run across my homelab, I run an ETL pipeline to monitor service state. Several data sources, like rsyslog, cAdvisor and OpenTelemetry provide the extraction. Transformation is done in Alloy and sent to a self-hosted LGTM stack. Grafana displays the homelab state in various dashboards and watches health indicators, sending me alerts through Discord if anything is amiss.',
-        'https://gitlab.com/haondt/deployments/-/tree/main/gabbro/services',
-        ['Grafana', 'LGTM', 'Alloy', 'Monitoring', 'ETL'],
-        ['static/grafana_1.png', 'static/grafana_2.png', 'static/grafana_3.png']
     ) }}
 
     {{ project(
